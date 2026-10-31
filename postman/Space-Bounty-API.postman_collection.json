@@ -1,0 +1,19 @@
+{
+  "info": {
+    "name": "Space Bounty API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{"key": "baseUrl", "value": "http://localhost:8080"}, {"key": "huntId", "value": "1"}],
+  "item": [
+    {"name": "List criminals", "request": {"method": "GET", "url": "{{baseUrl}}/api/criminals/"}},
+    {"name": "Filter armed criminals by reward", "request": {"method": "GET", "url": "{{baseUrl}}/api/criminals/?min_reward=5000&armed=true&sort=-reward"}},
+    {"name": "Criminal details", "request": {"method": "GET", "url": "{{baseUrl}}/api/criminals/1/"}},
+    {"name": "List all hunts", "request": {"method": "GET", "url": "{{baseUrl}}/api/hunts/"}},
+    {"name": "Filter hunts by criminal", "request": {"method": "GET", "url": "{{baseUrl}}/api/hunts/?criminal_id=5"}},
+    {"name": "Create hunt log", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"criminal_id\": 3,\n  \"success\": false,\n  \"notes\": \"Target escaped through an asteroid field.\"\n}"}, "url": "{{baseUrl}}/api/hunts/"}},
+    {"name": "Get hunt log", "request": {"method": "GET", "url": "{{baseUrl}}/api/hunts/{{huntId}}/"}},
+    {"name": "Update hunt log", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"success\": true,\n  \"notes\": \"Target captured at the relay station.\"\n}"}, "url": "{{baseUrl}}/api/hunts/{{huntId}}/"}},
+    {"name": "Delete hunt log", "request": {"method": "DELETE", "url": "{{baseUrl}}/api/hunts/{{huntId}}/"}},
+    {"name": "Invalid criminal reference", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"criminal_id\": 99999,\n  \"success\": false,\n  \"notes\": \"This should return 404.\"\n}"}, "url": "{{baseUrl}}/api/hunts/"}}
+  ]
+}
