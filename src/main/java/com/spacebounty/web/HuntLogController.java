@@ -32,7 +32,7 @@ public class HuntLogController {
 
     @GetMapping({"", "/"})
     public List<HuntLog> list(@RequestParam(name = "criminal_id", required = false) Long criminalId) {
-        return criminalId == null ? huntLogs.findAll() : huntLogs.findByCriminalId(criminalId);
+        return criminalId == null ? huntLogs.findAll() : huntLogs.findByCriminal_Id(criminalId);
     }
 
     @GetMapping({"/{id}", "/{id}/"})

@@ -1,5 +1,6 @@
 package com.spacebounty.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +32,7 @@ public class WantedCriminal {
     private boolean escapeMaster;
 
     @OneToMany(mappedBy = "criminal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<HuntLog> huntLogs = new ArrayList<>();
 
     protected WantedCriminal() {
