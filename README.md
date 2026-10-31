@@ -7,6 +7,35 @@ Spring Boot 3.2.3 REST API using Java 17, Spring Web, Spring Data JPA, and Postg
 - Java 17+
 - Maven 3.9+
 - PostgreSQL 14+
+- Docker Desktop with Docker Compose
+
+## Run with Docker Compose
+
+Docker Compose starts the Spring Boot API and PostgreSQL together. No local Java, Maven, or PostgreSQL installation is needed:
+
+```bash
+docker compose up --build
+```
+
+Wait for the `db` health check and the Spring Boot startup message, then use the API at `http://localhost:8080`. The first startup builds the application image and seeds 5 criminals and 10 hunt logs. PostgreSQL data is kept in the `postgres_data` Docker volume between restarts.
+
+Useful commands:
+
+```bash
+# Run in the background
+docker compose up --build -d
+
+# View application logs
+docker compose logs -f app
+
+# Stop the containers, keeping database data
+docker compose down
+
+# Stop containers and delete the seeded database volume
+docker compose down -v
+```
+
+The included Postman collection uses `http://localhost:8080` and works with the Docker setup without changes.
 
 ## Run locally
 
